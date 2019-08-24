@@ -57,11 +57,9 @@ export async function getHub(version: string): Promise<void> {
     toolPath = await tc.cacheDir(hubDir, 'hub', downloadInfo.version);
   }
   core.debug(`adding hub to path: ${toolPath}`);
-  if(IS_WINDOWS)
-  {
+  if (IS_WINDOWS) {
     core.addPath(toolPath);
-  }
-  else{
+  } else {
     core.addPath(path.join(toolPath, 'bin'));
   }
 }
