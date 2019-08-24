@@ -5,9 +5,6 @@ import * as path from 'path';
 async function run() {
   try {
     let version = core.getInput('version');
-    if (!version) {
-      version = core.getInput('hub-version', {required: true});
-    }
     await installer.getHub(version);
 
     const matchersPath = path.join(__dirname, '..', '.github');
