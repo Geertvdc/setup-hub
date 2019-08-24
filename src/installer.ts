@@ -27,16 +27,15 @@ if (!tempDirectory) {
 }
 
 export async function getHub(version: string): Promise<void> {
-  let toolPath = tc.find('hub', version);
-
+  core.debug('Downloading hub from Github releases');
+  const downloadInfo = await getDownloadInfo(version);
+  let toolPath = tc.find('hub',downloadInfo.version);
   if (toolPath) {
     core.debug(`Tool found in cache ${toolPath}`);
   } else {
     let compressedFileExtension = '';
-
-    core.debug('Downloading hub from Github releases');
-    const downloadInfo = await getDownloadInfo(version);
     let hubBin = await tc.downloadTool(downloadInfo.url);
+    core.debug(`Downloaded file: ${hubBin}`);
     compressedFileExtension = IS_WINDOWS ? '.zip' : '.tar.gz';
 
     let hubFile = downloadInfo.url.substring(downloadInfo.url.lastIndexOf('/'));
