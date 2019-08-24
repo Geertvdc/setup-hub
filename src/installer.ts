@@ -57,7 +57,13 @@ export async function getHub(version: string): Promise<void> {
     toolPath = await tc.cacheDir(hubDir, 'hub', downloadInfo.version);
   }
   core.debug(`adding hub to path: ${toolPath}`);
-  core.addPath(path.join(toolPath, 'bin'));
+  if(IS_WINDOWS)
+  {
+    core.addPath(toolPath);
+  }
+  else{
+    core.addPath(path.join(toolPath, 'bin'));
+  }
 }
 
 function getFileEnding(file: string): string {
