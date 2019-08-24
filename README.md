@@ -1,6 +1,6 @@
-# setup-Hub
+# setup-hub
 
-This github action allows for installation of the Github hub CLI to be used in your actions pipeline.
+This github action allows for installation of the [Github hub CLI](https://github.com/github/hub) to be used in your actions pipeline.
 
 # Usage
 
