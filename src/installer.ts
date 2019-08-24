@@ -29,7 +29,7 @@ if (!tempDirectory) {
 export async function getHub(version: string): Promise<void> {
   core.debug('Downloading hub from Github releases');
   const downloadInfo = await getDownloadInfo(version);
-  let toolPath = tc.find('hub',downloadInfo.version);
+  let toolPath = tc.find('hub', downloadInfo.version);
   if (toolPath) {
     core.debug(`Tool found in cache ${toolPath}`);
   } else {
