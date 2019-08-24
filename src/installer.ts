@@ -39,7 +39,7 @@ export async function getHub(version: string): Promise<void> {
     );
     let hubBin = await tc.downloadTool(downloadInfo.url);
     core.debug(`Downloaded file: ${hubBin}`);
-    compressedFileExtension = IS_WINDOWS ? '.zip' : '.tar.gz';
+    compressedFileExtension = IS_WINDOWS ? '.zip' : '.tgz';
 
     let hubFile = downloadInfo.url.substring(downloadInfo.url.lastIndexOf('/'));
 
@@ -133,7 +133,7 @@ async function unzipHubDownload(
 
 async function getDownloadInfo(version: string): Promise<DownloadInfo> {
   let platform = '';
-  let fileExtension = IS_WINDOWS ? '.zip' : '.tar.gz';
+  let fileExtension = IS_WINDOWS ? '.zip' : '.tgz';
 
   if (IS_WINDOWS) {
     platform = `windows`;
