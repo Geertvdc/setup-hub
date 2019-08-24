@@ -70,14 +70,10 @@ function getCacheVersionString(version: string) {
 function getFileEnding(file: string): string {
   let fileEnding = '';
 
-  if (file.endsWith('.tar')) {
-    fileEnding = '.tar';
-  } else if (file.endsWith('.tar.gz')) {
-    fileEnding = '.tar.gz';
+  if (file.endsWith('.tgz')) {
+    fileEnding = '.tgz';
   } else if (file.endsWith('.zip')) {
     fileEnding = '.zip';
-  } else if (file.endsWith('.7z')) {
-    fileEnding = '.7z';
   } else {
     throw new Error(`${file} has an unsupported file extension`);
   }
@@ -97,7 +93,7 @@ async function extractFiles(
     throw new Error(`Failed to extract ${file} - it is a directory`);
   }
 
-  if ('.tar' === fileEnding || '.tar.gz' === fileEnding) {
+  if ('.tgz' === fileEnding) {
     await tc.extractTar(file, destinationFolder);
   } else if ('.zip' === fileEnding) {
     await tc.extractZip(file, destinationFolder);
