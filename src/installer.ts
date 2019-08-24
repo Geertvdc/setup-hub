@@ -26,9 +26,7 @@ if (!tempDirectory) {
   tempDirectory = path.join(baseLocation, 'actions', 'temp');
 }
 
-export async function getHub(
-  version: string,
-): Promise<void> {
+export async function getHub(version: string): Promise<void> {
   let toolPath = tc.find('hub', version);
 
   if (toolPath) {
@@ -53,13 +51,9 @@ export async function getHub(
       tempDir
     );
     core.debug(`hub extracted to ${hubDir}`);
-    toolPath = await tc.cacheDir(
-      hubDir,
-      'hub',
-      getCacheVersionString(version)
-    );
+    toolPath = await tc.cacheDir(hubDir, 'hub', getCacheVersionString(version));
   }
-  
+
   core.addPath(path.join(toolPath, 'bin'));
 }
 
@@ -134,9 +128,7 @@ async function unzipHubDownload(
   }
 }
 
-async function getDownloadInfo(
-  version: string
-): Promise<DownloadInfo> {
+async function getDownloadInfo(version: string): Promise<DownloadInfo> {
   let platform = '';
   let fileExtension = IS_WINDOWS ? '.zip' : '.tar.gz';
 
@@ -150,26 +142,31 @@ async function getDownloadInfo(
     }
   }
 
-  if(version){
+  if (version) {
     let validVersion = semver.valid(version);
-    if(!validVersion)
-    {
+    if (!validVersion) {
       throw new Error(
         `No valid download found for version ${version}. Check https://github.com/github/hub/releases for a list of valid releases`
       );
     }
     //specific version, get that version from releases
-    return {url: `https://github.com/github/hub/releases/download/v${version}/hub-${platform}-amd64-${version}${fileExtension}`,version: version} as DownloadInfo;
-
-  }
-  else{
+    return {
+      url: `https://github.com/github/hub/releases/download/v${version}/hub-${platform}-amd64-${version}${fileExtension}`,
+      version: version
+    } as DownloadInfo;
+  } else {
     //get latest release
     let http: httpm.HttpClient = new httpm.HttpClient('setup-hub');
-    let releaseJson = await (await http.get('https://api.github.com/repos/github/hub/releases/latest')).readBody();
+    let releaseJson = await (await http.get(
+      'https://api.github.com/repos/github/hub/releases/latest'
+    )).readBody();
     let releasesInfo = JSON.parse(releaseJson);
     let latestVersion = releasesInfo.tag_name.substring(1);
 
-    return {url: `https://github.com/github/hub/releases/latest/download/hub-${platform}-amd64-${latestVersion}${fileExtension}`,version: latestVersion} as DownloadInfo;
+    return {
+      url: `https://github.com/github/hub/releases/latest/download/hub-${platform}-amd64-${latestVersion}${fileExtension}`,
+      version: latestVersion
+    } as DownloadInfo;
   }
 }
 
