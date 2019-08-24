@@ -1,0 +1,10 @@
+name: 'Setup Hub'
+description: 'Setup your runner with Hub CLI'
+author: 'Geertvdc'
+inputs: 
+  hub-version:
+    description: 'Version of hub release, if not entered will use latest'
+    required: false
+runs:
+  using: 'node12'
+  main: 'lib/setup-hub.js'
