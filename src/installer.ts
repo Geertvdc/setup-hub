@@ -34,7 +34,9 @@ export async function getHub(version: string): Promise<void> {
     core.debug(`Tool found in cache ${toolPath}`);
   } else {
     let compressedFileExtension = '';
-    core.debug(`Tool not found in cache. Download tool from url: ${downloadInfo.url}`);
+    core.debug(
+      `Tool not found in cache. Download tool from url: ${downloadInfo.url}`
+    );
     let hubBin = await tc.downloadTool(downloadInfo.url);
     core.debug(`Downloaded file: ${hubBin}`);
     compressedFileExtension = IS_WINDOWS ? '.zip' : '.tar.gz';
