@@ -1,8 +1,8 @@
-name: Main workflow
+name: Build & Test
 on: [push]
 jobs:
-  run:
-    name: Run
+  build:
+    name: Build
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -24,3 +24,16 @@ jobs:
 
     # - name: npm test
     #   run: npm test
+  test:
+    needs: build
+    name: Test
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - name: Install hub
+      uses: geertvdc/setup-hub@master
+      
+    - name: run hub
+      run: hub --version
