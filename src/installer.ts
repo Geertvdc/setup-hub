@@ -41,14 +41,14 @@ export async function getHub(version: string): Promise<void> {
     core.debug(`Downloaded file: ${hubBin}`);
     compressedFileExtension = IS_WINDOWS ? '.zip' : '.tgz';
 
-    let hubFile = downloadInfo.url.substring(downloadInfo.url.lastIndexOf('/'));
+    //let hubFile = downloadInfo.url.substring(downloadInfo.url.lastIndexOf('/'));
 
     let tempDir: string = path.join(
       tempDirectory,
       'temp_' + Math.floor(Math.random() * 2000000000)
     );
     const hubDir = await unzipHubDownload(
-      hubFile,
+      hubBin,
       compressedFileExtension,
       tempDir
     );
