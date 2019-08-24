@@ -37,5 +37,5 @@ jobs:
       
     - name: run hub
       run: |
-           C:\hostedtoolcache\windows\hub\2.12.3\x64\bin\hub.exe --version
+           echo %PATH%
            hub --version
