@@ -53,18 +53,11 @@ export async function getHub(version: string): Promise<void> {
       tempDir
     );
     core.debug(`hub extracted to ${hubDir}`);
-    toolPath = await tc.cacheDir(hubDir, 'hub', getCacheVersionString(version));
+    core.debug(`caching directory containing version ${downloadInfo.version}`);
+    toolPath = await tc.cacheDir(hubDir, 'hub', downloadInfo.version);
   }
-
+  core.debug(`adding hub to path: ${toolPath}`);
   core.addPath(path.join(toolPath, 'bin'));
-}
-
-function getCacheVersionString(version: string) {
-  const versionArray = version.split('.');
-  const major = versionArray[0];
-  const minor = versionArray.length > 1 ? versionArray[1] : '0';
-  const patch = versionArray.length > 2 ? versionArray[2] : '0';
-  return `${major}.${minor}.${patch}`;
 }
 
 function getFileEnding(file: string): string {
