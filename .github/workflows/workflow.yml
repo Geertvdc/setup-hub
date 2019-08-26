@@ -40,8 +40,5 @@ jobs:
         GITHUB_USER: ${{ secrets.GITHUB_USER }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-           pwd
-           ls
            hub --version
            hub release
-           hub release create v1.4 -m "test"
