@@ -32,7 +32,7 @@ steps:
       GITHUB_USER: ${{ secrets.GITHUB_USER }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     run: |
-        hub release
+         hub release
 ```
 
 # License
