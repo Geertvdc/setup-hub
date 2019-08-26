@@ -1,8 +1,9 @@
 name: 'Setup Hub'
 description: 'Setup your Github Actions runner with Hub CLI'
 author: 'Geert van der Cruijsen'
-icon: play
-color: gray-dark
+branding:
+  icon: 'play'
+  color: 'gray-dark'
 inputs: 
   hub-version:
     description: 'Version of hub release, if not entered will use latest'
