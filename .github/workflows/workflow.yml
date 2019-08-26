@@ -30,11 +30,15 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
+    - uses: actions/checkout@v1
+    
     - name: Install hub
       uses: geertvdc/setup-hub@master
       
     - name: run hub
       run: |
+           pwd
+           ls
            hub --version
            hub release
            hub release create v1.4 -m "test"
