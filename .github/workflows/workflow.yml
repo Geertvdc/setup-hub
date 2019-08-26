@@ -37,6 +37,7 @@ jobs:
       
     - name: run hub
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_USER }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
            pwd
