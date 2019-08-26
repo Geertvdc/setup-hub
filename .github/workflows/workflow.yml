@@ -34,4 +34,7 @@ jobs:
       uses: geertvdc/setup-hub@master
       
     - name: run hub
-      run: hub --version
+      run: |
+           hub --version
+           hub release
+           hub release create v1.3
