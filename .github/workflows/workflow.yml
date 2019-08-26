@@ -36,6 +36,8 @@ jobs:
       uses: geertvdc/setup-hub@master
       
     - name: run hub
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
            pwd
            ls
