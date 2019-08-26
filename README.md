@@ -4,6 +4,8 @@ This github action allows for installation of the [Github hub CLI](https://githu
 
 It has support for Linux, MacOS and Windows runners.
 
+Hub CLI allows you to do more with github specific features like releases, issues and pull requests in your Github Action workflow
+
 # Usage
 
 See [action.yml](action.yml)
@@ -14,8 +16,23 @@ steps:
 - uses: actions/checkout@latest
 - uses: geertvdc/setup-hub@master
 
-
 - run: hub --version
+```
+
+Ahtorized calls to change things:
+```yaml
+steps:
+- uses: actions/checkout@v1
+
+- name: Install hub
+    uses: geertvdc/setup-hub@master
+    
+- name: run hub commands
+    env:
+      GITHUB_USER: ${{ secrets.GITHUB_USER }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    run: |
+        hub release
 ```
 
 # License
