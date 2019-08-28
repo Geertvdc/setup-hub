@@ -36,6 +36,7 @@ steps:
     run: |
          hub release
 ```
+add GITHUB_USER with your github user account to secrets.
 
 # License
 
