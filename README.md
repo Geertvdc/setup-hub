@@ -21,7 +21,7 @@ steps:
 - run: hub --version
 ```
 
-Ahtorized calls to change things:
+Authorized calls to change things:
 ```yaml
 steps:
 - uses: actions/checkout@v1
