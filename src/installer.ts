@@ -41,8 +41,6 @@ export async function getHub(version: string): Promise<void> {
     core.debug(`Downloaded file: ${hubBin}`);
     compressedFileExtension = IS_WINDOWS ? '.zip' : '.tgz';
 
-    //let hubFile = downloadInfo.url.substring(downloadInfo.url.lastIndexOf('/'));
-
     let tempDir: string = path.join(
       tempDirectory,
       'temp_' + Math.floor(Math.random() * 2000000000)
@@ -152,11 +150,13 @@ async function getDownloadInfo(version: string): Promise<DownloadInfo> {
     } as DownloadInfo;
   } else {
     //get latest release
+    core.debug('Downloading latest release because no version selected');
     let http: httpm.HttpClient = new httpm.HttpClient('setup-hub');
     let releaseJson = await (await http.get(
       'https://api.github.com/repos/github/hub/releases/latest'
     )).readBody();
     let releasesInfo = JSON.parse(releaseJson);
+    core.debug(`latest version = ${releasesInfo.tag_name}`);
     let latestVersion = releasesInfo.tag_name.substring(1);
 
     return {
