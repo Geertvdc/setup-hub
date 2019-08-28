@@ -137,6 +137,7 @@ async function getDownloadInfo(version: string): Promise<DownloadInfo> {
   }
 
   if (version) {
+    core.debug(`download version = ${version}`);
     let validVersion = semver.valid(version);
     if (!validVersion) {
       throw new Error(
