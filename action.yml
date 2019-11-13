@@ -4,8 +4,11 @@ author: 'Geert van der Cruijsen'
 branding:
   icon: 'play'
   color: 'gray-dark'
-inputs: 
-  hub-version:
+inputs: - name: 
+Setup Hub
+  uses: 
+
+hub-version:Geertvdc/setup-hub@v1.0.0
     description: 'Version of hub release, if not entered will use latest'
     required: false
 runs:
